@@ -1,0 +1,18 @@
+.new-matches {
+  width: 100vw;
+  padding: 50px;
+  overflow-y: hidden;
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+}

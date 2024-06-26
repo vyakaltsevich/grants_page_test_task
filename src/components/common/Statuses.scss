@@ -1,0 +1,23 @@
+$color1: #6260ff;
+$color2: #ff338d;
+$color3: #1db41d;
+$bg1: #ededff;
+$bg2: #ffebf4;
+$bg3: #e5f6e5;
+
+.status {
+  padding: 5px;
+  background: $bg1;
+  color: $color1;
+  border-radius: 15px;
+
+  &--rejected {
+    background: $bg2;
+    color: $color2;
+  }
+
+  &--accepted {
+    background: $bg3;
+    color: $color3;
+  }
+}

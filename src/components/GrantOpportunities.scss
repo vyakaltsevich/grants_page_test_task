@@ -1,0 +1,10 @@
+.grant-opportunities {
+  width: calc(100vw - 100px);
+  padding: 50px;
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+}

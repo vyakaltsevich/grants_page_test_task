@@ -1,0 +1,132 @@
+.card {
+  width: 400px;
+  min-width: 400px;
+  border: 1px solid var(--borderColor);
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    border: 1px solid var(--textColor3);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__header-logo {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--logoBgColor);
+    color: var(--textColor3);
+    margin-right: auto;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  &__header-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-left: 10px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__foundation {
+    margin-bottom: 5px;
+  }
+
+  &__name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+  }
+
+  &__payments {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+
+    svg {
+      fill: var(--textColor3);
+    }
+  }
+
+  &__payments-block {
+    height: 150px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--backgroundColor2);
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 18px;
+    margin-bottom: 25px;
+
+    &:last-child {
+      background: var(--backgroundColor1);
+      border-radius: 5px;
+    }
+
+    hr {
+      width: 100%;
+      background: var(--hrColor);
+    }
+  }
+
+  &__payments-icon {
+    margin-bottom: auto;
+  }
+
+  &__payments-amount {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--textColor3);
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__areas-title {
+    margin-bottom: 10px;
+  }
+
+  &__areas {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  &__area {
+    padding: 5px 15px;
+    background: var(--backgroundColor1);
+    border-radius: 15px;
+  }
+
+  label {
+    color: var(--textColor1);
+  }
+}

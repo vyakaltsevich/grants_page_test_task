@@ -1,20 +1,19 @@
 export type Grant = {
-    _id: string,
-    name: string,
-    amount: number,
-    foundation: string,
+    id: string,
+    grantName: string,
+    averageAmount: number,
+    foundationName: string,
     deadline: string,
     location: string,
-    areas: string[]
+    area: string[],
+    isActive: boolean,
+    matchDate: string,
+    status: string
 };
 
-
-export type SavedGrant = {
-    status: string,
-    _id: string,
-    feedback: string,
-    matchDate: string,
-    grant: Grant,
+export type EdgeGrant = {
+    cursor: string,
+    node: Grant
 }
 
 export type ModalProps = { id: string, positive: boolean }

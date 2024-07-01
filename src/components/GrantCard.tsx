@@ -11,20 +11,20 @@ type GrantCardProps = {
     setModal: ({id, positive}: ModalProps) => void
 }
 export const GrantCard = ({grant, setModal}: GrantCardProps) => {
-    const {_id, name, amount, deadline, location, areas, foundation}: Grant = grant
+    const {id, grantName, averageAmount, deadline, location, area, foundationName}: Grant = grant
 
     const onThumbUpClick = () => {
-        setModal({id: _id, positive: true})
+        setModal({id, positive: true})
     }
     const onThumbDownClick = () => {
-        setModal({id: _id, positive: false})
+        setModal({id, positive: false})
     }
 
     return (
         <div className='card'>
 
             <div className='card__header'>
-                <div className='card__header-logo'>{name.split('')[0]}</div>
+                <div className='card__header-logo'>{grantName.split('')[0]}</div>
                 <div className='card__header-icon' onClick={onThumbUpClick}>
                     <img src={thumb_up} alt="thumb_up"/>
                 </div>
@@ -33,15 +33,15 @@ export const GrantCard = ({grant, setModal}: GrantCardProps) => {
                 </div>
             </div>
 
-            <label className='card__foundation'>{foundation}</label>
-            <div className='card__name'>{name}</div>
+            <label className='card__foundation'>{foundationName}</label>
+            <div className='card__name'>{grantName}</div>
 
             <div className='card__payments'>
                 <div className='card__payments-block '>
                     <div className='card__payments-icon'>
                         <img src={payments} alt="payments"/>
                     </div>
-                    <div className='card__payments-amount'>${amount}</div>
+                    <div className='card__payments-amount'>${averageAmount}</div>
                     <div className='fw-500'>Avg amount</div>
                 </div>
                 <div className='card__payments-block '>
@@ -60,7 +60,7 @@ export const GrantCard = ({grant, setModal}: GrantCardProps) => {
 
             <div className='card__areas-title'>Area of Funding</div>
             <div className='card__areas'>
-                {areas.map((area: string) => <div key={area} className='card__area'>{area}</div>)}
+                {area.map((area: string) => <div key={area} className='card__area'>{area}</div>)}
             </div>
 
         </div>

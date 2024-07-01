@@ -1,74 +1,84 @@
 import {gql, useMutation, useQuery} from "@apollo/client";
-import {Grant, SavedGrant} from "./types";
+import {EdgeGrant} from "./types";
 
 const getGrantMatchesGql = gql`
-    query {
-        grantsMatches(userId: "4e7b8472-8183-4888-bfe5-f56356c927c8") {
-            _id
-            name
-            amount
-            foundation
-            deadline
-            location
-            areas
-        }
+query {
+  getAllGrants(first: 10) {
+    edges {
+      cursor
+      node {
+        id
+        foundationName
+        grantName
+        averageAmount
+        deadline
+        location
+        area
+        isActive
+      }
     }
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
+    }
+    totalCount
+  }
+}
 `;
 
 export const useGrantsMatchesQuery = () =>
-    useQuery<{ grantsMatches: Grant[] }>(getGrantMatchesGql);
+    useQuery<{
+        getAllGrants: {
+            edges: EdgeGrant[]
+        }
+    }>(getGrantMatchesGql);
 
 const getSavedGrantsGql = gql`
-    query {
-        savedGrants(userId: "4e7b8472-8183-4888-bfe5-f56356c927c8") {
-        status
-        _id
-        feedback
+query{
+  getUserGrants(userId: 1, first: 10){
+    edges {
+      cursor
+      node {
+        id
+        foundationName
+        grantName
+        averageAmount
+        deadline
         matchDate
-            grant {
-                _id
-                name
-                amount
-                foundation
-                deadline
-                location
-                areas
-            }
-        }
+        status
+      }
     }
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
+    }
+    totalCount
+  }
+}
 `;
 
 export const useSavedGrantsQuery = () =>
-    useQuery<{ savedGrants: SavedGrant[] }>(getSavedGrantsGql);
+    useQuery<{
+        getUserGrants: {
+            edges: EdgeGrant[]
+        }
+    }>(getSavedGrantsGql);
 
 const saveGrantGql = gql`
-    mutation SaveGrant($grantId: String!, $feedback: String!) {
-        saveGrant(
-            userId: "4e7b8472-8183-4888-bfe5-f56356c927c8"
-            grantId: $grantId
-            feedback: $feedback
-        ) {
-            _id
-            status
-            feedback
-            matchDate
-        }
-    }
+mutation CreateUserGrant($grantId: Float!, $feedback: String!, $isApproved: Boolean!){
+  createUserGrant(input: {feedback: $feedback, grantId: $grantId, userId: 1, isApproved: $isApproved}){
+    status,
+    averageAmount,
+    deadline,
+    grantName,
+    foundationName,
+    matchDate
+  }
+}
 `;
 
 export const useSaveGrantMutation = () => useMutation(saveGrantGql);
-
-const hideGrantGql = gql`
-    mutation HideGrant($grantId: String!, $feedback: String!) {
-        hideGrant(
-            userId: "4e7b8472-8183-4888-bfe5-f56356c927c8"
-            grantId: $grantId
-            feedback: $feedback
-        ) {
-            _id
-            feedback
-        }
-    }
-`;
-
-export const useHideGrantMutation = () => useMutation(hideGrantGql);

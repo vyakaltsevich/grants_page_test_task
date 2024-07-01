@@ -21,8 +21,8 @@ export const NewMatches = ({setModal}: NewMatchesProps) => {
         <div className='new-matches'>
             <div className='new-matches__title'>New Matches</div>
             <div className='new-matches__list'>
-                {data?.grantsMatches.map((grant: Grant) =>
-                    <GrantCard key={grant._id} grant={grant} setModal={setModal}/>
+                {data?.getAllGrants.edges.map(({node}: { node: Grant }) =>
+                    <GrantCard key={node.id} grant={node} setModal={setModal}/>
                 )}
             </div>
         </div>

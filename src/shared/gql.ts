@@ -3,7 +3,7 @@ import {EdgeGrant} from "./types";
 
 const getGrantMatchesGql = gql`
 query {
-  getAllGrants(first: 10) {
+  getAllGrants(input: {}) {
     edges {
       cursor
       node {
@@ -37,7 +37,7 @@ export const useGrantsMatchesQuery = () =>
 
 const getSavedGrantsGql = gql`
 query{
-  getUserGrants(userId: 1, first: 10){
+  getUserGrants(input: {userId: 1}){
     edges {
       cursor
       node {
@@ -46,7 +46,6 @@ query{
         grantName
         averageAmount
         deadline
-        matchDate
         status
       }
     }
@@ -69,7 +68,7 @@ export const useSavedGrantsQuery = () =>
     }>(getSavedGrantsGql);
 
 const saveGrantGql = gql`
-mutation CreateUserGrant($grantId: Float!, $feedback: String!, $isApproved: Boolean!){
+mutation CreateUserGrant($grantId: Int!, $feedback: String!, $isApproved: Boolean!){
   createUserGrant(input: {feedback: $feedback, grantId: $grantId, userId: 1, isApproved: $isApproved}){
     status,
     averageAmount,

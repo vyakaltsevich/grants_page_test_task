@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {NewMatches} from "./components/NewMatches";
 import {GrantOpportunities} from "./components/GrantOpportunities";
 import {FeedbackModal} from "./components/FeedbackModal";

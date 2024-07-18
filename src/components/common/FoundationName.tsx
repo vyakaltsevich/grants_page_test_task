@@ -1,4 +1,3 @@
-import React from 'react';
 import './FoundationName.scss'
 
 export const FoundationName = ({value}: { value: string }) => {

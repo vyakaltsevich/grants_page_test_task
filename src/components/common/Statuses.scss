@@ -10,13 +10,14 @@ $bg3: #e5f6e5;
   background: $bg1;
   color: $color1;
   border-radius: 15px;
+  width: max-content;
 
-  &--rejected {
+  &.--rejected {
     background: $bg2;
     color: $color2;
   }
 
-  &--accepted {
+  &.--accepted {
     background: $bg3;
     color: $color3;
   }

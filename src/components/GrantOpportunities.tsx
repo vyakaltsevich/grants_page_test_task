@@ -28,7 +28,7 @@ const columns: TableColumnsType<EdgeGrant> = [
         sorter: (a, b) => a.node.averageAmount - b.node.averageAmount
     },
     {title: 'Status', dataIndex: ['node', 'status'], render: value => <Statuses status={value}/>},
-    {title: 'Deadline', dataIndex: ['node', 'deadline'], render: value => <Moment format="MMMM Mo" date={value}/>},
+    {title: 'Deadline', dataIndex: ['node', 'deadline'], render: value => <div>{value}</div>},
     {
         title: 'Match date',
         dataIndex: ['node', 'matchDate'],
@@ -42,6 +42,7 @@ export const GrantOpportunities: React.FC = () => {
     if (loading) {
         return <div>Loading...</div>
     }
+    
     if (error) {
         console.error(error)
     }

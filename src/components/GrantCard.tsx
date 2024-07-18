@@ -1,8 +1,7 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import payments from '../shared/icons/payments.svg';
 import thumb_down from '../shared/icons/thumb_down.svg';
 import thumb_up from '../shared/icons/thumb_up.svg';
-import Moment from "react-moment";
 import {Grant, ModalProps} from "../shared/types";
 import './GrantCard.scss';
 
@@ -13,6 +12,21 @@ type GrantCardProps = {
 export const GrantCard = ({grant, setModal}: GrantCardProps) => {
     const {id, grantName, averageAmount, deadline, location, area, foundationName}: Grant = grant
 
+    const [isHovered, setIsHovered] = useState(false)
+
+
+    const handleMouseEnter = () => {
+        setIsHovered(true)
+    }
+
+    const handleMouseLeave = () => {
+        setIsHovered(false)
+    }
+
+    useEffect(() => {
+        console.log(isHovered,'hover')
+    }, [isHovered])
+
     const onThumbUpClick = () => {
         setModal({id, positive: true})
     }
@@ -21,8 +35,7 @@ export const GrantCard = ({grant, setModal}: GrantCardProps) => {
     }
 
     return (
-        <div className='card'>
-
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='card'>
             <div className='card__header'>
                 <div className='card__header-logo'>{grantName.split('')[0]}</div>
                 <div className='card__header-icon' onClick={onThumbUpClick}>
@@ -46,7 +59,8 @@ export const GrantCard = ({grant, setModal}: GrantCardProps) => {
                 </div>
                 <div className='card__payments-block '>
                     <label>Deadline</label>
-                    <div className='fw-700'><Moment format="MMMM Mo" date={deadline}/></div>
+                    {/* <div className='fw-700'><Moment format="MMMM Mo" date={deadline}/></div> */}
+                    <div className='fw-700'><div>{deadline}</div></div>
                     <hr/>
                     <label>Getting started</label>
                     <div className='fw-700'>Apply online</div>
@@ -62,7 +76,7 @@ export const GrantCard = ({grant, setModal}: GrantCardProps) => {
             <div className='card__areas'>
                 {area.map((area: string) => <div key={area} className='card__area'>{area}</div>)}
             </div>
-
+            {isHovered && <button className='card__btn' disabled>Apply here</button>}
         </div>
     );
 }

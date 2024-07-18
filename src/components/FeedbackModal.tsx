@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Button, Input, Modal} from 'antd';
 import {ModalProps} from "../shared/types";
 import {useGrantsMatchesQuery, useSavedGrantsQuery, useSaveGrantMutation} from "../shared/gql";
 
 const {TextArea} = Input;
+
 type FeedbackModalProps = {
     modal: ModalProps | null,
     setModal: (value: null) => void
@@ -17,7 +18,6 @@ export const FeedbackModal = ({modal, setModal}: FeedbackModalProps) => {
     const {refetch: refetchSavedGrants} = useSavedGrantsQuery();
 
     const onSubmit = (feedback: string) => {
-        setModal(null);
         saveGrant({
             variables: {
                 grantId: modal?.id,
@@ -27,6 +27,7 @@ export const FeedbackModal = ({modal, setModal}: FeedbackModalProps) => {
         })
             .then(refetchSavedGrants)
             .then(refetchGrantsMatches)
+        setModal(null);
     };
 
     const onChange = (event: any) => {
@@ -38,10 +39,15 @@ export const FeedbackModal = ({modal, setModal}: FeedbackModalProps) => {
         setValue('')
     }
 
+    const closeModalWindow = () => {
+        setModal(null);
+    }
+
     return (
         <>
             <Modal title="Thanks for your opinion"
                    open={!!modal}
+                   onCancel={closeModalWindow}
                    footer={[
                        <Button key="submit" type="primary" onClick={handleSubmit}>
                            Submit
